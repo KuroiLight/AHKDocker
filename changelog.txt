@@ -1,0 +1,112 @@
+170920.220453 - (09/20/17 22:04:53)
+ - removed seemingly redundant code / fixed issue with explorer windows
+ - added missing var during mouse check
+ - added DISABLEMIDDLEMOUSECENTER, allowing user to disable middle mouse centering
+
+151122.175141 - (11/22/15 17:51:41)
+ - rewrote LockWindow, should be far more reliable and less hackish.
+
+151021.203608 - (10/21/15 20:36:08)
+ - added startup script I forgot to commit last time
+ - commented out debug code
+
+151010.182911 - (10/10/15 18:29:11)
+ - replaced StartupEntry code with externally maintained startupcode
+ - fixed any errors shown when #Warn is enabled
+ - removed dead code (IsPointOnScreen)
+
+150727.214437 - (07/27/15 21:44:37)
+ - cleaned up ini code
+ - added auto startup entry creation
+ - added icon check
+ - FIX: corrected spelling mistake (Progmen -> Progman); was causing self disable on desktop activation.
+
+150721.170733 - (07/21/15 17:07:33)
+ - added iDisableAsyncWinMove to settings as a workaround for timing issue, change its value to 1 to enable.
+
+150712.021447 - (07/12/15 02:14:47)
+ - merged IsElligible into DockWindow
+ - merged CenterForWindow into MoveWindow
+ - added IsValidWindow to AnimateMovement and LockWindow
+ - IsValidWindow now checks if the window still exists
+ - small changes to Setup(), ini will now have scripts name (settings will be reset)
+ - removed LUCall and reverted to default dllcalls (performance reasons)
+
+150624.211842 - (06/24/15 21:18:42)
+ - re-added ClientGetRect (for IsFullscreen)
+ - rewrote IsFullscreen should be more reliable now
+ - added IsValidWindow, to filter out windows we dont want to touch
+ - Docked windows will no longer popout if a fullscreen window is active (should make it more game friendly)
+
+150619.155900 - (06/19/15 15:59:00)
+ - added lower limit(1) to GetTimerRes.
+
+150611.163309 - (06/11/15 16:33:09)
+ - added point/line classes
+ - converted previous code to use point/line
+ - replaced OptDllCall with LUCall
+ - fixed bug causing prevwindow to not be activate
+ - added secondary tray avoidance
+
+150601.192848 - (06/01/15 19:28:48)
+ - fixed 32bit incompatibility (NtQueryTimerResolution)
+ - added 32bit build
+
+150530.004834 - (05/30/15 00:48:34)
+ - moved restart button below seperator in tray
+ - rewrote popout timer code (made it more manageable)
+ - dockmode code should be more tolerant
+ - removed dead/commented code
+ - fixed lockwindows not always being called
+ - rename docker.ahk to AHKDocker.ahk to allow more generic build script
+
+150527.230018 - (05/27/15 23:00:18)
+ - fix spelling error line 447
+ - change YDist test to half
+ - get mouse pos earlier
+ - fixed: IsFullscreen returning true on desktop
+ - made some sections critical/notimer, so windows get stuck with modified styles less often
+ 
+150527.195837 - (05/27/15 19:58:37)
+ - fixed timer shutting off too soon
+ - fixed various issues stopping dockpoints from being created
+ - better adjacent monitor detention
+ - Note: will add more bug/performence fixes as I encounter them.
+
+150527.174858 - (05/27/15 17:48:58)
+ - NEW!!: multi monitor support (may still need some work)
+ - mousetowindow detection now no longer relies on the window being on top
+ - gripsize is now gotten from windows
+ - popout timer will reduce to 1s when a fullscreen/borderless application is detected
+ - updated readme
+ - NOTE: code may still need some cleanup and tweaking
+
+150519.215324 - (05/19/15 21:53:24)
+ - fix: window not swapping with another window
+ - fix: lockwindow being called to early
+ - note: SWP_ASYNCWINDOWPOS is causing the timing issue (sometimes a window gets removed from a dock), but without it windows will move slow and sometimes holdup the script, looking for solution.
+
+150519.160306 - (05/19/15 16:03:06)
+ - mainly code beautification: renamed variables/functions and moved functions.
+ - added OptDllCall, Contains, IsEmpty functions
+ - changed some code in MoveWindow, LockWindow, ExitDocker
+ - added some null checking
+ - IsElligible now requires window, and mouse pos from caller
+ - added VarSetCapacity cleanups
+
+150430.162636 - (04/30/15 16:26:36)
+ - sorted/cleaned script settings
+ - rewrote tray code, togglescript, and changed ReloadSettings to a label
+ - added step modifier to AnimateMovement; ranging from 0.0-2.0, smaller is fewer steps
+ - *fix* changed WinGetPos(ahk) to GetWinPos(win32) to completely mitigate timing issue
+ - simplified GetTrayPosition, GetPopPos, MoveWindow and GetMouseDirection(previously GetDirection).
+ - rewrote WindowMod (now known as LOCKWINDOW)
+ - *fix* got Transparency working again.
+ - changed iTransparency setting from a Transparency value to a percent; 100 = 100% solid, 50 = 50% solid
+ - various small code changes throughout to improve stability
+
+150416.234124 - (04/16/15 23:41:24)
+ - changed animation jump calc., it makes more sense, and should scale better properly to timerres
+ - removed an unnecessary variable creation from GetTimerRes
+ - moved sleep in popout loop, to better negate a timing issue
+ - removed unnecessary window_moved check
